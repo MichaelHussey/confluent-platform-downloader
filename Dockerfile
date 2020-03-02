@@ -10,12 +10,17 @@
 #centos5.11, 5.11 (docker/Dockerfile)
 
 FROM centos:latest
-MAINTAINER "Jeremy Brown" <jeremy@tenfourty.com>
+MAINTAINER "Mic Hussey" <mic@confluent.io>
 ENV container docker
 
 # install yum-utils for the yumdownloader command and epel for additional epel packages
 # if you needed additional repositories you could do that here
 RUN yum install -y yum-utils epel-release
+
+# add Confluent public repository
+RUN rpm --import https://packages.confluent.io/rpm/5.4/archive.key
+
+COPY confluent.repo /etc/yum.repos.d/confluent.repo
 
 # create my rpms directory (mount your local volume to this path)
 RUN mkdir /rpms
@@ -25,4 +30,4 @@ RUN mkdir /rpms
 # CMD contains the defaults but you can override these by providing different arguments - see README.md for examples
 
 ENTRYPOINT ["yumdownloader", "--destdir=/rpms/", "--resolve"]
-CMD ["ansible","git","curl"]
+CMD ["confluent-platform-2.12", "confluent-server"]

@@ -1,17 +1,17 @@
-# yum-rpm-downloader-docker
-Dockerfile to download rpms via yumdownloader for offline installation
+# confluent-platform-downloader
+Forked from https://github.com/tenfourty/yum-rpm-downloader-docker, thanks Jeremy Brown!
+
+Dockerfile to download rpms via yumdownloader for offline installation of Confluent Platform 5.4
 
 If you want to build this image for yourself then you can do it like this:
 
-``docker build --rm -t yum-rpm-downloader-docker .``
+``docker build --rm -t confluent-platform-downloader .``
 
 Then just run it and replace MYLOCALRPMDIR with a full path to where you want the RPMs to be saved:
 
-``docker run -v MYLOCALRPMDIR:/rpms/ yum-rpm-downloader-docker``
+``docker run -v MYLOCALRPMDIR:/rpms/ confluent-platform-downloader``
 
-This example above just downloads ansible, git and curl and their dependencies, but of course you have your own list of packages you want so instead you can pass them at the end of this command, so for example if you want to install openldap, openldap-clients and openldap-servers just do the following:
-
-``docker run -v MYLOCALRPMDIR/rpms:/rpms/ yum-rpm-downloader-docker openldap openldap-clients openldap-servers``
+This example above just downloads Confluent Platform 5.4 plus Confluent Server
 
 If you want to change the version of the Operating System you just need to change the FROM line - currently this has only been tested with CentOS but it should work for Fedora, RHEL and other Enterprise Linux like OSes.
 
