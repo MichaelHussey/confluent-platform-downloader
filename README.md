@@ -25,4 +25,5 @@ FROM centos:6.6
 FROM centos:5.11
 ```
 
-Pull requests welcome, please raise issues in github if you find any.
+Once you have pulled down the rpms, change to the directory where you saved them. Then you can install by following the instructions from 
+step no 4 onward https://docs.confluent.io/current/installation/installing_cp/rhel-centos.html
